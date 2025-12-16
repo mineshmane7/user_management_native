@@ -1,0 +1,1 @@
+/Users/Sourabh.Sharma/Documents/FSR/POC/UserManagementPOC/UserManagementApp/android/app/build/intermediates/cxx/Debug/4j10215q/obj/arm64-v8a

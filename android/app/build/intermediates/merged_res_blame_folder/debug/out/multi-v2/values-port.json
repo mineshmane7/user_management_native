@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.usermanagementapp-mergeDebugResources-31:/values-port/values-port.xml",
+            "map": [
+                {
+                    "source": "/Users/Sourabh.Sharma/.gradle/caches/8.8/transforms/a3aaf17b8ece3bfc06a1cd6677f50ed2/transformed/appcompat-1.6.1/res/values-port/values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        }
+    ]
+}

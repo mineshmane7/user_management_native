@@ -1,0 +1,26 @@
+# ninja log v5
+1	103	0	/Users/Sourabh.Sharma/Documents/FSR/POC/UserManagementPOC/UserManagementApp/android/app/.cxx/Debug/4j10215q/arm64-v8a/CMakeFiles/cmake.verify_globs	7241c4301d81058e
+105	515	1765878603224588297	build.ninja	4db7032c4715f4e0
+0	58	0	/Users/Sourabh.Sharma/Documents/FSR/POC/UserManagementPOC/UserManagementApp/android/app/.cxx/Debug/4j10215q/arm64-v8a/CMakeFiles/cmake.verify_globs	7241c4301d81058e
+6	5824	1765878609265379258	rnclipboard_autolinked_build/CMakeFiles/react_codegen_rnclipboard.dir/react/renderer/components/rnclipboard/States.cpp.o	bd47dc33f034f8a1
+4	5880	1765878609307886884	rndocumentpicker_autolinked_build/CMakeFiles/react_codegen_rndocumentpicker.dir/react/renderer/components/rndocumentpicker/EventEmitters.cpp.o	ccfccd26d57ecc5d
+2	5884	1765878609317313860	rnclipboard_autolinked_build/CMakeFiles/react_codegen_rnclipboard.dir/react/renderer/components/rnclipboard/EventEmitters.cpp.o	9b557ca1ff5f5751
+10	5940	1765878609387229623	rnclipboard_autolinked_build/CMakeFiles/react_codegen_rnclipboard.dir/rnclipboard-generated.cpp.o	540404c968183c14
+9	5989	1765878609443553360	rnclipboard_autolinked_build/CMakeFiles/react_codegen_rnclipboard.dir/react/renderer/components/rnclipboard/rnclipboardJSI-generated.cpp.o	16598971dfcc5aa6
+6	6220	1765878609670066682	rnclipboard_autolinked_build/CMakeFiles/react_codegen_rnclipboard.dir/react/renderer/components/rnclipboard/Props.cpp.o	4ea849254385ef3
+2	6566	1765878610018266286	CMakeFiles/appmodules.dir/OnLoad.cpp.o	cb6f10ae9cdb2ed7
+6	6601	1765878610051027225	rnclipboard_autolinked_build/CMakeFiles/react_codegen_rnclipboard.dir/react/renderer/components/rnclipboard/ShadowNodes.cpp.o	6c1ac0b27ab22cee
+4	6668	1765878610120462320	rnclipboard_autolinked_build/CMakeFiles/react_codegen_rnclipboard.dir/react/renderer/components/rnclipboard/ComponentDescriptors.cpp.o	1c1a1882463094eb
+13	6925	1765878610352503694	rnpicker_autolinked_build/CMakeFiles/react_codegen_rnpicker.dir/RNCAndroidDialogPickerShadowNode.cpp.o	192bcae9359b3f9f
+10	7033	1765878610482473117	rnpicker_autolinked_build/CMakeFiles/react_codegen_rnpicker.dir/RNCAndroidDialogPickerMeasurementsManager.cpp.o	1f01e44813639390
+6668	8306	1765878611761892767	/Users/Sourabh.Sharma/Documents/FSR/POC/UserManagementPOC/UserManagementApp/android/app/build/intermediates/cxx/Debug/4j10215q/obj/arm64-v8a/libreact_codegen_rnclipboard.so	7c9926c0d803d332
+5826	8339	1765878611775279836	rnpicker_autolinked_build/CMakeFiles/react_codegen_rnpicker.dir/RNCAndroidDialogPickerState.cpp.o	17ee0d6ddbaa500
+5884	8782	1765878612224379972	rnpicker_autolinked_build/CMakeFiles/react_codegen_rnpicker.dir/RNCAndroidDropdownPickerShadowNode.cpp.o	c88bc98491a16c78
+5880	8960	1765878612405485413	rnpicker_autolinked_build/CMakeFiles/react_codegen_rnpicker.dir/RNCAndroidDropdownPickerMeasurementsManager.cpp.o	aa535f5bda8c5204
+5989	9728	1765878613174521722	rnpicker_autolinked_build/CMakeFiles/react_codegen_rnpicker.dir/rnpicker.cpp.o	9a64cbde41304ef2
+6220	9921	1765878613343273513	rnpicker_autolinked_build/CMakeFiles/react_codegen_rnpicker.dir/Users/Sourabh.Sharma/Documents/FSR/POC/UserManagementPOC/UserManagementApp/node_modules/@react-native-picker/picker/android/build/generated/source/codegen/jni/react/renderer/components/rnpicker/ComponentDescriptors.cpp.o	3cd973991d4336bf
+5940	9967	1765878613415842739	rnpicker_autolinked_build/CMakeFiles/react_codegen_rnpicker.dir/RNCAndroidDropdownPickerState.cpp.o	e1fd94dc804cfefb
+7033	10361	1765878613802367043	rnpicker_autolinked_build/CMakeFiles/react_codegen_rnpicker.dir/Users/Sourabh.Sharma/Documents/FSR/POC/UserManagementPOC/UserManagementApp/node_modules/@react-native-picker/picker/android/build/generated/source/codegen/jni/react/renderer/components/rnpicker/States.cpp.o	e7187aeb30afcb72
+6566	10546	1765878613983748485	rnpicker_autolinked_build/CMakeFiles/react_codegen_rnpicker.dir/Users/Sourabh.Sharma/Documents/FSR/POC/UserManagementPOC/UserManagementApp/node_modules/@react-native-picker/picker/android/build/generated/source/codegen/jni/react/renderer/components/rnpicker/EventEmitters.cpp.o	44fe829de6fe6f44
+6925	11283	1765878614672913553	rnpicker_autolinked_build/CMakeFiles/react_codegen_rnpicker.dir/Users/Sourabh.Sharma/Documents/FSR/POC/UserManagementPOC/UserManagementApp/node_modules/@react-native-picker/picker/android/build/generated/source/codegen/jni/react/renderer/components/rnpicker/ShadowNodes.cpp.o	f44b0e4aff9048d3
+6601	11294	1765878614737922307	rnpicker_autolinked_build/CMakeFiles/react_codegen_rnpicker.dir/Users/Sourabh.Sharma/Documents/FSR/POC/UserManagementPOC/UserManagementApp/node_modules/@react-native-picker/picker/android/build/generated/source/codegen/jni/react/renderer/components/rnpicker/Props.cpp.o	b1d25e183d420ca0

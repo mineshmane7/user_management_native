@@ -1,0 +1,137 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Super Admin",
+      "email": "superadmin@test.com",
+      "password": "super123",
+      "roles": [
+        "superadmin"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Admin User",
+      "email": "admin@test.com",
+      "password": "admin123",
+      "roles": [
+        "admin"
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Test User",
+      "email": "test@gmail.com",
+      "password": "test12",
+      "roles": [
+        "user"
+      ]
+    },
+    {
+      "id": "fe83",
+      "name": "test11",
+      "email": "test11@gmail.com",
+      "password": "test11",
+      "roles": [
+        "user"
+      ],
+      "createdAt": "2025-12-12T07:53:24.645Z"
+    },
+    {
+      "id": "a2f5",
+      "name": "test45",
+      "email": "test45@gmail.com",
+      "password": "test45",
+      "roles": [
+        "user"
+      ],
+      "updatedAt": "2025-12-12T10:48:47.042Z"
+    },
+    {
+      "id": "5390",
+      "name": "Viewer",
+      "email": "viewer@test.com",
+      "password": "viewer12",
+      "roles": [
+        "Viewer"
+      ],
+      "createdAt": "2025-12-12T13:47:46.478Z"
+    },
+    {
+      "id": "ec39",
+      "name": "Sourabh",
+      "email": "sourabh@example.com",
+      "password": "sourabh123",
+      "roles": [
+        "admin",
+        "user"
+      ],
+      "createdAt": "2025-12-15T13:14:37.736Z"
+    }
+  ],
+  "todos": [],
+  "properties": [
+    {
+      "id": "68ef",
+      "title": "vila",
+      "description": "vila1",
+      "createdBy": "fe83",
+      "createdByName": "test11",
+      "createdAt": "2025-12-12T07:53:57.375Z"
+    },
+    {
+      "id": "20b7",
+      "title": "vila1",
+      "description": "vila23232",
+      "createdBy": "2",
+      "createdByName": "Admin User",
+      "createdAt": "2025-12-12T07:55:04.940Z"
+    },
+    {
+      "id": "f8dc",
+      "title": "test111",
+      "description": "test1112",
+      "createdBy": "5390",
+      "createdByName": "Viewer",
+      "createdAt": "2025-12-12T13:48:46.643Z"
+    }
+  ],
+  "roles": [
+    {
+      "id": "superadmin",
+      "name": "Super Admin",
+      "permissions": {
+        "addProperty": true,
+        "updateProperty": true,
+        "deleteProperty": true
+      }
+    },
+    {
+      "id": "admin",
+      "name": "Admin",
+      "permissions": {
+        "addProperty": true,
+        "updateProperty": true,
+        "deleteProperty": true
+      }
+    },
+    {
+      "id": "user",
+      "name": "User",
+      "permissions": {
+        "addProperty": false,
+        "updateProperty": false,
+        "deleteProperty": false
+      }
+    },
+    {
+      "id": "Viewer",
+      "name": "Viewer",
+      "permissions": {
+        "addProperty": false,
+        "updateProperty": false,
+        "deleteProperty": false
+      }
+    }
+  ]
+}
