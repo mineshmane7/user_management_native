@@ -5,3 +5,10 @@ android/app/build/
 # Ignore iOS build outputs and app bundles
 ios/build/
 *.app
+
+# Ignore node modules and Pods
+node_modules/
+ios/Pods/
+
+# macOS
+.DS_Store
