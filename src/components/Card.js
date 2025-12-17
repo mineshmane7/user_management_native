@@ -1,32 +1,22 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React from "react";
+import { StyleSheet, Text } from "react-native";
+import { Card as CarbonCard } from "@carbon/react-native";
 
-const Card = ({children, style, title}) => {
+const Card = ({ children, style, title }) => {
   return (
-    <View style={[styles.card, style]}>
-      {title && <Text style={styles.title}>{title}</Text>}
+    <CarbonCard style={style} testID="carbon-card">
+      {title ? <Text style={styles.title}>{title}</Text> : null}
       {children}
-    </View>
+    </CarbonCard>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
-    backgroundColor: '#fff',
-    padding: 20,
-    borderRadius: 10,
-    marginBottom: 15,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
   title: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 15,
+    fontWeight: "bold",
+    color: "#333",
+    marginBottom: 12,
   },
 });
 

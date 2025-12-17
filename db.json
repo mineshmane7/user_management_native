@@ -67,6 +67,47 @@
         "user"
       ],
       "createdAt": "2025-12-15T13:14:37.736Z"
+    },
+    {
+      "id": "0470",
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "roles": [
+        "Roles"
+      ],
+      "createdAt": "2025-12-17T10:01:56.112Z"
+    },
+    {
+      "id": "2a5e",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "password": "john123",
+      "roles": [
+        "admin",
+        "user"
+      ],
+      "createdAt": "2025-12-17T10:01:56.112Z"
+    },
+    {
+      "id": "4846",
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "password": "jane123",
+      "roles": [
+        "user"
+      ],
+      "createdAt": "2025-12-17T10:01:56.112Z"
+    },
+    {
+      "id": "ba1f",
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "roles": [
+        "Roles"
+      ],
+      "createdAt": "2025-12-17T10:02:44.412Z"
     }
   ],
   "todos": [],
@@ -120,7 +161,7 @@
       "name": "User",
       "permissions": {
         "addProperty": false,
-        "updateProperty": false,
+        "updateProperty": true,
         "deleteProperty": false
       }
     },
