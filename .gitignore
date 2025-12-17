@@ -1,2 +1,7 @@
+# Ignore Android build outputs and app binaries
 android/app/build/
 *.apk
+
+# Ignore iOS build outputs and app bundles
+ios/build/
+*.app
