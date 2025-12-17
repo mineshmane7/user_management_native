@@ -12,9 +12,9 @@ import {
 } from "react-native";
 import DocumentPicker from "react-native-document-picker";
 import RNFS from "react-native-fs";
-import BASE_URL from "../config/api";
+import BASE_URL from "../api/api";
 import { CustomPicker, CustomCheckbox } from "../components";
-import CarbonIcon from "../components/CarbonIcon";
+import CarbonIcon from "../components/common/CarbonIcon";
 import Add24 from "@carbon/icons/es/add/24";
 import Edit24 from "@carbon/icons/es/edit/24";
 import Trash24 from "@carbon/icons/es/trash-can/24";

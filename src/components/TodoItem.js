@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Button } from "@carbon/react-native";
-import CarbonIcon from "./CarbonIcon";
+import CarbonIcon from "./common/CarbonIcon";
 import Edit24 from "@carbon/icons/es/edit/24";
 import Trash24 from "@carbon/icons/es/trash-can/24";
 
