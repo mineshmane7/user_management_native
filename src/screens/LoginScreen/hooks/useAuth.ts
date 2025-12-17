@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Alert } from "react-native";
-import BASE_URL from "../../../api/api";
+import { apiService } from "../../../api/apiService";
 
 interface User {
   id: string;
@@ -33,24 +33,10 @@ export const useAuth = (): UseAuthReturn => {
 
     setLoading(true);
     try {
-      console.log("Attempting login to:", `${BASE_URL}/users`);
+      // Fetch users using apiService
+      const response = await apiService.get<User[]>("/users");
+      const users = response.data;
 
-      // Fetch users from JSON server
-      const response = await fetch(`${BASE_URL}/users`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-
-      console.log("Response status:", response.status);
-
-      if (!response.ok) {
-        throw new Error(`Server returned ${response.status}`);
-      }
-
-      const users: User[] = await response.json();
       console.log("Fetched users count:", users.length);
 
       // Check if user exists with matching credentials
@@ -60,6 +46,10 @@ export const useAuth = (): UseAuthReturn => {
 
       if (user) {
         console.log("Login successful for:", user.email);
+        
+        // Set auth token if needed (you can generate a token or use user ID)
+        // apiService.setAuthToken(`Bearer ${user.id}`);
+        
         // Navigate to dashboard with user data
         navigation.replace("Dashboard", { user });
         setEmail("");
@@ -72,7 +62,7 @@ export const useAuth = (): UseAuthReturn => {
       console.error("Login error:", error);
       Alert.alert(
         "Connection Error",
-        `Cannot connect to server at ${BASE_URL}. Please ensure:\n1. json-server is running on port 3001\n2. Your device/emulator can access the server\n\nError: ${error.message}`
+        `Cannot connect to server. Please ensure:\n1. json-server is running on port 3001\n2. Your device/emulator can access the server\n\nError: ${error.message || "Unknown error"}`
       );
     } finally {
       setLoading(false);

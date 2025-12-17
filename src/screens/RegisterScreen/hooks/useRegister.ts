@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Alert } from "react-native";
-import BASE_URL from "../../../api/api";
+import { apiService } from "../../../api/apiService";
 
 interface Role {
   id: string;
@@ -41,17 +41,16 @@ export const useRegister = (): UseRegisterReturn => {
 
   const fetchRoles = async () => {
     try {
-      const response = await fetch(`${BASE_URL}/roles`);
-      const data = await response.json();
-      setRoles(data);
+      const response = await apiService.get<Role[]>("/roles");
+      setRoles(response.data);
     } catch (error) {
       console.error("Failed to fetch roles:", error);
     }
   };
 
   const roleItems: RoleItem[] = roles
-    .filter((r) => r.id !== "superadmin")
-    .map((r) => ({ label: r.name, value: r.id }));
+    .filter((r: Role) => r.id !== "superadmin")
+    .map((r: Role) => ({ label: r.name, value: r.id }));
 
   const handleSubmit = async (navigation: any) => {
     // Validation
@@ -82,15 +81,9 @@ export const useRegister = (): UseRegisterReturn => {
 
     setLoading(true);
     try {
-      const response = await fetch(`${BASE_URL}/users`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
+      const response = await apiService.post("/users", userData);
 
-      if (response.ok) {
+      if (response.status === 201 || response.status === 200) {
         Alert.alert("Success", "Registration successful!", [
           {
             text: "OK",

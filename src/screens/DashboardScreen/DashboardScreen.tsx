@@ -226,7 +226,7 @@ const DashboardScreen = ({ route, navigation }: any) => {
             Welcome, {user.name} ({getRoleDisplayName(user.role)})
           </Text>
         </View>
-        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+        <TouchableOpacity style={styles.logoutButton} onPress={() => handleLogout(navigation)}>
           <Text style={styles.logoutButtonText}>Logout</Text>
         </TouchableOpacity>
       </View>

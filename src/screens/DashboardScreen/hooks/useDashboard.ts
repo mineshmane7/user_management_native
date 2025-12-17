@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Alert } from "react-native";
 import DocumentPicker from "react-native-document-picker";
 import RNFS from "react-native-fs";
-import BASE_URL from "../../../api/api";
+import { apiService } from "../../../api/apiService";
 
 export const useDashboard = (user: any) => {
   // Roles management (Super Admin)
@@ -62,9 +62,8 @@ export const useDashboard = (user: any) => {
 
   const fetchRoles = async () => {
     try {
-      const response = await fetch(`${BASE_URL}/roles`);
-      const data = await response.json();
-      setRoles(data);
+      const response = await apiService.get<any[]>("/roles");
+      setRoles(response.data);
     } catch (error) {
       Alert.alert("Error", "Failed to fetch roles");
       console.error(error);
@@ -73,9 +72,8 @@ export const useDashboard = (user: any) => {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch(`${BASE_URL}/users`);
-      const data = await response.json();
-      const filteredUsers = data.filter((u: any) => u.role !== "superadmin");
+      const response = await apiService.get<any[]>("/users");
+      const filteredUsers = response.data.filter((u: any) => u.role !== "superadmin");
       setUsers(filteredUsers);
     } catch (error) {
       Alert.alert("Error", "Failed to fetch users");
@@ -94,7 +92,7 @@ export const useDashboard = (user: any) => {
 
   const toggleRoleSelection = (roleId: string) => {
     if (newUserRoles.includes(roleId)) {
-      setNewUserRoles(newUserRoles.filter((r) => r !== roleId));
+      setNewUserRoles(newUserRoles.filter((r: string) => r !== roleId));
     } else {
       setNewUserRoles([...newUserRoles, roleId]);
     }
@@ -161,12 +159,12 @@ export const useDashboard = (user: any) => {
 
         if (values.length >= 4) {
           const rolesString = values[3].replace(/"/g, "");
-          const rolesArray = rolesString.split(",").map((r) => r.trim()).filter((r) => r);
+          const rolesArray = rolesString.split(",").map((r: string) => r.trim()).filter((r: string) => r);
 
           usersToImport.push({
-            name: values[0].replace(/"/g, ""),
-            email: values[1].replace(/"/g, ""),
-            password: values[2].replace(/"/g, ""),
+            name: values[0]?.replace(/"/g, "") || "",
+            email: values[1]?.replace(/"/g, "") || "",
+            password: values[2]?.replace(/"/g, "") || "",
             roles: rolesArray,
             createdAt: new Date().toISOString(),
           });
@@ -183,13 +181,9 @@ export const useDashboard = (user: any) => {
 
       for (const userToImport of usersToImport) {
         try {
-          const response = await fetch(`${BASE_URL}/users`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(userToImport),
-          });
+          const response = await apiService.post("/users", userToImport);
 
-          if (response.ok) {
+          if (response.status === 200 || response.status === 201) {
             successCount++;
           } else {
             errorCount++;
@@ -223,7 +217,7 @@ export const useDashboard = (user: any) => {
         return;
       }
 
-      const headers = lines[0].split(",").map((h) => h.trim().replace(/"/g, ""));
+      const headers = lines[0].split(",").map((h: string) => h.trim().replace(/"/g, ""));
 
       if (headers[0] !== "Name" || headers[1] !== "Email" || headers[2] !== "Password" || headers[3] !== "Roles") {
         Alert.alert("Invalid Format", 'CSV must have columns: Name, Email, Password, Roles');
@@ -276,13 +270,9 @@ export const useDashboard = (user: any) => {
 
       for (const userToImport of usersToImport) {
         try {
-          const response = await fetch(`${BASE_URL}/users`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(userToImport),
-          });
+          const response = await apiService.post("/users", userToImport);
 
-          if (response.ok) {
+          if (response.status === 200 || response.status === 201) {
             successCount++;
           } else {
             errorCount++;
@@ -342,13 +332,9 @@ export const useDashboard = (user: any) => {
     };
 
     try {
-      const response = await fetch(`${BASE_URL}/users`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newUser),
-      });
+      const response = await apiService.post("/users", newUser);
 
-      if (response.ok) {
+      if (response.status === 200 || response.status === 201) {
         Alert.alert("Success", "User created successfully!");
         setAddUserModalVisible(false);
         fetchUsers();
@@ -397,13 +383,9 @@ export const useDashboard = (user: any) => {
     };
 
     try {
-      const response = await fetch(`${BASE_URL}/users/${selectedUser.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedUser),
-      });
+      const response = await apiService.put(`/users/${selectedUser.id}`, updatedUser);
 
-      if (response.ok) {
+      if (response.status === 200 || response.status === 204) {
         Alert.alert("Success", "User updated successfully!");
         setEditUserModalVisible(false);
         fetchUsers();
@@ -424,11 +406,9 @@ export const useDashboard = (user: any) => {
         style: "destructive",
         onPress: async () => {
           try {
-            const response = await fetch(`${BASE_URL}/users/${userId}`, {
-              method: "DELETE",
-            });
+            const response = await apiService.delete(`/users/${userId}`);
 
-            if (response.ok) {
+            if (response.status === 200 || response.status === 204) {
               Alert.alert("Success", "User deleted successfully!");
               fetchUsers();
             } else {
@@ -448,7 +428,7 @@ export const useDashboard = (user: any) => {
       Alert.alert("Error", "Please enter role name and ID");
       return;
     }
-    if (roles.some((r) => r.id === newRoleId)) {
+    if (roles.some((r: any) => r.id === newRoleId)) {
       Alert.alert("Error", "Role ID must be unique");
       return;
     }
@@ -458,12 +438,8 @@ export const useDashboard = (user: any) => {
       permissions: newRolePermissions,
     };
     try {
-      const response = await fetch(`${BASE_URL}/roles`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newRole),
-      });
-      if (response.ok) {
+      const response = await apiService.post("/roles", newRole);
+      if (response.status === 200 || response.status === 201) {
         Alert.alert("Success", "Role created successfully!");
         setAddRoleModalVisible(false);
         fetchRoles();
@@ -488,12 +464,8 @@ export const useDashboard = (user: any) => {
       permissions: newRolePermissions,
     };
     try {
-      const response = await fetch(`${BASE_URL}/roles/${selectedRole.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedRole),
-      });
-      if (response.ok) {
+      const response = await apiService.put(`/roles/${selectedRole.id}`, updatedRole);
+      if (response.status === 200 || response.status === 204) {
         Alert.alert("Success", "Role updated successfully!");
         setEditRoleModalVisible(false);
         fetchRoles();
@@ -508,8 +480,8 @@ export const useDashboard = (user: any) => {
 
   const handleDeleteRole = async (roleId: string) => {
     try {
-      const response = await fetch(`${BASE_URL}/users`);
-      const allUsers = await response.json();
+      const response = await apiService.get<any[]>("/users");
+      const allUsers = response.data;
 
       const usersWithRole = allUsers.filter((u: any) => {
         if (Array.isArray(u.roles)) {
@@ -535,10 +507,8 @@ export const useDashboard = (user: any) => {
           style: "destructive",
           onPress: async () => {
             try {
-              const deleteResponse = await fetch(`${BASE_URL}/roles/${roleId}`, {
-                method: "DELETE",
-              });
-              if (deleteResponse.ok) {
+              const deleteResponse = await apiService.delete(`/roles/${roleId}`);
+              if (deleteResponse.status === 200 || deleteResponse.status === 204) {
                 Alert.alert("Success", "Role deleted successfully!");
                 fetchRoles();
               } else {
@@ -559,9 +529,8 @@ export const useDashboard = (user: any) => {
 
   const fetchProperties = async () => {
     try {
-      const response = await fetch(`${BASE_URL}/properties`);
-      const data = await response.json();
-      setProperties(data);
+      const response = await apiService.get<any[]>("/properties");
+      setProperties(response.data);
     } catch (error) {
       Alert.alert("Error", "Failed to fetch properties");
       console.error(error);
@@ -583,13 +552,9 @@ export const useDashboard = (user: any) => {
     };
 
     try {
-      const response = await fetch(`${BASE_URL}/properties`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newProperty),
-      });
+      const response = await apiService.post("/properties", newProperty);
 
-      if (response.ok) {
+      if (response.status === 200 || response.status === 201) {
         Alert.alert("Success", "Property added successfully!");
         setNewPropertyTitle("");
         setNewPropertyDescription("");
@@ -625,13 +590,9 @@ export const useDashboard = (user: any) => {
     };
 
     try {
-      const response = await fetch(`${BASE_URL}/properties/${selectedProperty.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedProperty),
-      });
+      const response = await apiService.put(`/properties/${selectedProperty.id}`, updatedProperty);
 
-      if (response.ok) {
+      if (response.status === 200 || response.status === 204) {
         Alert.alert("Success", "Property updated successfully!");
         setEditPropertyModalVisible(false);
         fetchProperties();
@@ -652,11 +613,9 @@ export const useDashboard = (user: any) => {
         style: "destructive",
         onPress: async () => {
           try {
-            const response = await fetch(`${BASE_URL}/properties/${propertyId}`, {
-              method: "DELETE",
-            });
+            const response = await apiService.delete(`/properties/${propertyId}`);
 
-            if (response.ok) {
+            if (response.status === 200 || response.status === 204) {
               Alert.alert("Success", "Property deleted successfully!");
               fetchProperties();
             } else {
@@ -682,7 +641,7 @@ export const useDashboard = (user: any) => {
   };
 
   const getRoleDisplayName = (roleId: string) => {
-    const found = roles.find((r) => r.id === roleId);
+    const found = roles.find((r: any) => r.id === roleId);
     return found ? found.name : roleId;
   };
 
@@ -701,7 +660,7 @@ export const useDashboard = (user: any) => {
     };
 
     userRoles.forEach((roleId) => {
-      const roleData = roles.find((r) => r.id === roleId);
+      const roleData = roles.find((r: any) => r.id === roleId);
       if (roleData && roleData.permissions) {
         if (roleData.permissions.addProperty) mergedPermissions.addProperty = true;
         if (roleData.permissions.updateProperty) mergedPermissions.updateProperty = true;
@@ -712,11 +671,11 @@ export const useDashboard = (user: any) => {
     return mergedPermissions;
   };
 
-  const filteredUsers = users.filter((u) =>
+  const filteredUsers = users.filter((u: any) =>
     u.name.toLowerCase().includes(userSearchQuery.toLowerCase())
   );
 
-  const filteredProperties = properties.filter((p) =>
+  const filteredProperties = properties.filter((p: any) =>
     p.title.toLowerCase().includes(propertySearchQuery.toLowerCase())
   );
 
