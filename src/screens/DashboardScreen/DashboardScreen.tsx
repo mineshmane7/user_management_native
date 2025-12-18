@@ -650,7 +650,7 @@ const DashboardScreen = ({ route, navigation }: any) => {
                   },
                 ]}
                 onPress={() =>
-                  setNewRolePermissions((p) => ({
+                  setNewRolePermissions((p: Permissions) => ({
                     ...p,
                     addProperty: !p.addProperty,
                   }))
@@ -675,7 +675,7 @@ const DashboardScreen = ({ route, navigation }: any) => {
                   },
                 ]}
                 onPress={() =>
-                  setNewRolePermissions((p) => ({
+                  setNewRolePermissions((p: Permissions) => ({
                     ...p,
                     updateProperty: !p.updateProperty,
                   }))
@@ -699,7 +699,7 @@ const DashboardScreen = ({ route, navigation }: any) => {
                   },
                 ]}
                 onPress={() =>
-                  setNewRolePermissions((p) => ({
+                  setNewRolePermissions((p: Permissions) => ({
                     ...p,
                     deleteProperty: !p.deleteProperty,
                   }))
@@ -771,7 +771,7 @@ const DashboardScreen = ({ route, navigation }: any) => {
                   },
                 ]}
                 onPress={() =>
-                  setNewRolePermissions((p) => ({
+                  setNewRolePermissions((p: Permissions) => ({
                     ...p,
                     addProperty: !p.addProperty,
                   }))
@@ -796,7 +796,7 @@ const DashboardScreen = ({ route, navigation }: any) => {
                   },
                 ]}
                 onPress={() =>
-                  setNewRolePermissions((p) => ({
+                  setNewRolePermissions((p: Permissions) => ({
                     ...p,
                     updateProperty: !p.updateProperty,
                   }))
@@ -820,7 +820,7 @@ const DashboardScreen = ({ route, navigation }: any) => {
                   },
                 ]}
                 onPress={() =>
-                  setNewRolePermissions((p) => ({
+                  setNewRolePermissions((p: Permissions) => ({
                     ...p,
                     deleteProperty: !p.deleteProperty,
                   }))
@@ -1226,6 +1226,22 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 15,
     alignItems: "center",
+  },
+  helperText: {
+    fontSize: 14,
+    color: "#666",
+    marginBottom: 15,
+    lineHeight: 20,
+  },
+  button: {
+    padding: 15,
+    borderRadius: 8,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "600",
   },
 });
 

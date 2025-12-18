@@ -8,7 +8,11 @@ import {
 } from "../../components";
 import { useRegister } from "./hooks/useRegister";
 
-const RegisterScreen = ({ navigation }) => {
+interface RegisterScreenProps {
+  navigation: any;
+}
+
+const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
   const {
     name,
     setName,

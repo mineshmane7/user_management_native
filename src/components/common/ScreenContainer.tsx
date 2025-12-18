@@ -6,7 +6,11 @@ import {
   StyleSheet,
 } from 'react-native';
 
-const ScreenContainer = ({children}) => {
+interface ScreenContainerProps {
+  children: any;
+}
+
+const ScreenContainer = ({children}: ScreenContainerProps) => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}

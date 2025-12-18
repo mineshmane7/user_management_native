@@ -1,5 +1,18 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Modal, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Modal, FlatList, TouchableOpacity, StyleProp, ViewStyle } from "react-native";
+
+interface PickerItem {
+  label: string;
+  value: string;
+}
+
+interface CustomPickerProps {
+  label?: string;
+  selectedValue: string;
+  onValueChange: (value: string) => void;
+  items: PickerItem[];
+  style?: StyleProp<ViewStyle>;
+}
 
 const CustomPicker = ({
   label,
@@ -7,11 +20,11 @@ const CustomPicker = ({
   onValueChange,
   items,
   style,
-}) => {
+}: CustomPickerProps) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const getSelectedLabel = () => {
-    const selected = items.find((item) => item.value === selectedValue);
+    const selected = items.find((item: PickerItem) => item.value === selectedValue);
     return selected ? selected.label : "Select...";
   };
 
@@ -48,8 +61,8 @@ const CustomPicker = ({
             </View>
             <FlatList
               data={items}
-              keyExtractor={(item) => item.value}
-              renderItem={({ item }) => (
+              keyExtractor={(item: PickerItem) => item.value}
+              renderItem={({ item }: { item: PickerItem }) => (
                 <TouchableOpacity
                   style={[
                     styles.modalItem,

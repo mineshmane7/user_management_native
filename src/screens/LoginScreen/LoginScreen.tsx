@@ -3,7 +3,11 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { CustomInput, CustomButton, ScreenContainer } from "../../components";
 import { useAuth } from "./hooks/useAuth";
 
-const LoginScreen = ({ navigation }) => {
+interface LoginScreenProps {
+  navigation: any;
+}
+
+const LoginScreen = ({ navigation }: LoginScreenProps) => {
   const { email, setEmail, password, setPassword, loading, handleLogin } = useAuth();
 
   return (

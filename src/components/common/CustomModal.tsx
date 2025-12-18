@@ -2,7 +2,15 @@ import React from "react";
 import { Modal, View, Text, StyleSheet } from "react-native";
 import { Button } from "@carbon/react-native";
 
-const CustomModal = ({ visible, onClose, title, children, actions }) => {
+interface CustomModalProps {
+  visible: boolean;
+  onClose: () => void;
+  title?: string;
+  children: any;
+  actions?: any;
+}
+
+const CustomModal = ({ visible, onClose, title, children, actions }: CustomModalProps) => {
   return (
     <Modal
       visible={visible}
@@ -49,6 +57,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 20,
+  },
+  closeButton: {
+    marginTop: 15,
   },
 });
 

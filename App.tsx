@@ -17,7 +17,12 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator 
+        initialRouteName="Login"
+        screenOptions={{
+          animationEnabled: true,
+        }}
+      >
         <Stack.Screen
           name="Login"
           component={LoginScreen}

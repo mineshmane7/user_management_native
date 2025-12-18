@@ -5,6 +5,23 @@ import CarbonIcon from "./common/CarbonIcon";
 import Edit24 from "@carbon/icons/es/edit/24";
 import Trash24 from "@carbon/icons/es/trash-can/24";
 
+interface Todo {
+  id: string;
+  title: string;
+  description?: string;
+  createdByName?: string;
+}
+
+interface TodoItemProps {
+  todo: Todo;
+  onEdit: (todo: Todo) => void;
+  onDelete: (id: string) => void;
+  onPermission: (todo: Todo) => void;
+  canEdit: boolean;
+  canDelete: boolean;
+  isAdmin: boolean;
+}
+
 const TodoItem = ({
   todo,
   onEdit,
@@ -13,7 +30,7 @@ const TodoItem = ({
   canEdit,
   canDelete,
   isAdmin,
-}) => {
+}: TodoItemProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.content}>

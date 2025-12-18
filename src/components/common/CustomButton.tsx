@@ -1,6 +1,14 @@
 import React from 'react';
-import {ActivityIndicator, StyleSheet} from 'react-native';
+import {ActivityIndicator, StyleSheet, ViewStyle, StyleProp} from 'react-native';
 import {Button} from '@carbon/react-native';
+
+interface CustomButtonProps {
+  title: string;
+  onPress: () => void;
+  disabled?: boolean;
+  loading?: boolean;
+  style?: StyleProp<ViewStyle>;
+}
 
 const CustomButton = ({
   title,
@@ -8,7 +16,7 @@ const CustomButton = ({
   disabled = false,
   loading = false,
   style,
-}) => {
+}: CustomButtonProps) => {
   return (
     <Button
       text={loading ? 'Loading...' : title}

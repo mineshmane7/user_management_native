@@ -1,6 +1,18 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, KeyboardTypeOptions } from "react-native";
 import { TextInput } from "@carbon/react-native";
+
+interface CustomInputProps {
+  label?: string;
+  value: string;
+  onChangeText: (text: string) => void;
+  placeholder?: string;
+  secureTextEntry?: boolean;
+  keyboardType?: KeyboardTypeOptions;
+  autoCapitalize?: "none" | "sentences" | "words" | "characters";
+  multiline?: boolean;
+  numberOfLines?: number;
+}
 
 const CustomInput = ({
   label,
@@ -12,7 +24,7 @@ const CustomInput = ({
   autoCapitalize = "sentences",
   multiline = false,
   numberOfLines = 1,
-}) => {
+}: CustomInputProps) => {
   return (
     <TextInput
       label={label}

@@ -1,17 +1,30 @@
 import React from "react";
 import Svg, { Path, Circle, Rect, G } from "react-native-svg";
-import { View } from "react-native";
+import { View, StyleProp, ViewStyle } from "react-native";
+
+interface IconElement {
+  elem: string;
+  attrs?: any;
+  content?: IconElement[];
+}
+
+interface CarbonIconType {
+  attrs?: {
+    viewBox?: string;
+  };
+  content?: IconElement[];
+  size?: number;
+}
 
 // icon: object exported from @carbon/icons (es/*/24.js)
-const renderElem = (elem, idx, color) => {
+const renderElem = (elem: IconElement, idx: string | number, color: string): any => {
   const { elem: type, attrs = {}, content = [] } = elem;
   if (type === "path") {
-    return <Path key={idx} d={attrs.d} fill={attrs.fill || color} />;
+    return <Path d={attrs.d} fill={attrs.fill || color} />;
   }
   if (type === "circle") {
     return (
       <Circle
-        key={idx}
         cx={attrs.cx}
         cy={attrs.cy}
         r={attrs.r}
@@ -22,7 +35,6 @@ const renderElem = (elem, idx, color) => {
   if (type === "rect") {
     return (
       <Rect
-        key={idx}
         x={attrs.x}
         y={attrs.y}
         width={attrs.width}
@@ -33,15 +45,22 @@ const renderElem = (elem, idx, color) => {
   }
   if (type === "g") {
     return (
-      <G key={idx}>
-        {content.map((c, i) => renderElem(c, `${idx}-${i}`, color))}
+      <G>
+        {content.map((c: IconElement, i: number) => renderElem(c, `${idx}-${i}`, color))}
       </G>
     );
   }
   return null;
 };
 
-const CarbonIcon = ({ icon, size = 20, color = "#fff", style }) => {
+interface CarbonIconProps {
+  icon: CarbonIconType;
+  size?: number;
+  color?: string;
+  style?: StyleProp<ViewStyle>;
+}
+
+const CarbonIcon = ({ icon, size = 20, color = "#fff", style }: CarbonIconProps) => {
   if (!icon || !icon.attrs) return <View style={style} />;
 
   const viewBox =
@@ -50,7 +69,7 @@ const CarbonIcon = ({ icon, size = 20, color = "#fff", style }) => {
   return (
     <Svg width={size} height={size} viewBox={viewBox} style={style}>
       {Array.isArray(icon.content)
-        ? icon.content.map((c, i) => renderElem(c, i, color))
+        ? icon.content.map((c: IconElement, i: number) => renderElem(c, i, color))
         : null}
     </Svg>
   );

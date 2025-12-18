@@ -1,8 +1,14 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, StyleProp, ViewStyle } from "react-native";
 import { Card as CarbonCard } from "@carbon/react-native";
 
-const Card = ({ children, style, title }) => {
+interface CardProps {
+  children: any;
+  style?: StyleProp<ViewStyle>;
+  title?: string;
+}
+
+const Card = ({ children, style, title }: CardProps) => {
   return (
     <CarbonCard style={style} testID="carbon-card">
       {title ? <Text style={styles.title}>{title}</Text> : null}
