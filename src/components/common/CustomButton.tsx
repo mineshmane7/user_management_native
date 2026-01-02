@@ -1,6 +1,11 @@
-import React from 'react';
-import {ActivityIndicator, StyleSheet, ViewStyle, StyleProp} from 'react-native';
-import {Button} from '@carbon/react-native';
+import React from "react";
+import {
+  ActivityIndicator,
+  StyleSheet,
+  ViewStyle,
+  StyleProp,
+} from "react-native";
+import { Button } from "@carbon/react-native";
 
 interface CustomButtonProps {
   title: string;
@@ -19,11 +24,10 @@ const CustomButton = ({
 }: CustomButtonProps) => {
   return (
     <Button
-      text={loading ? 'Loading...' : title}
+      text={loading ? "Loading..." : title}
       onPress={onPress}
       disabled={disabled || loading}
       style={[styles.button, style]}
-      testID="custom-button"
     />
   );
 };

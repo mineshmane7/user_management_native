@@ -7,6 +7,7 @@ import {
   ScreenContainer,
 } from "../../components";
 import { useRegister } from "./hooks/useRegister";
+import CustomPasswordInput from "../../components/common/PasswordInput";
 
 interface RegisterScreenProps {
   navigation: any;
@@ -56,7 +57,7 @@ const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
           autoCapitalize="none"
         />
 
-        <CustomInput
+        <CustomPasswordInput
           label="Password"
           placeholder="Enter your password"
           value={password}

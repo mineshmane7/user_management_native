@@ -10,7 +10,13 @@ interface CustomModalProps {
   actions?: any;
 }
 
-const CustomModal = ({ visible, onClose, title, children, actions }: CustomModalProps) => {
+const CustomModal = ({
+  visible,
+  onClose,
+  title,
+  children,
+  actions,
+}: CustomModalProps) => {
   return (
     <Modal
       visible={visible}
@@ -24,7 +30,7 @@ const CustomModal = ({ visible, onClose, title, children, actions }: CustomModal
           {children}
           {actions && <View style={styles.actionsContainer}>{actions}</View>}
           {actions && !Array.isArray(actions) && (
-            <Button onPress={onClose} style={styles.closeButton}>
+            <Button text="" onPress={onClose} style={styles.closeButton}>
               Close
             </Button>
           )}

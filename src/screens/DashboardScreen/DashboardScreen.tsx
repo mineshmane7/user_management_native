@@ -10,11 +10,7 @@ import {
   ScrollView,
   ListRenderItemInfo,
 } from "react-native";
-import { CustomPicker, CustomCheckbox } from "../../components";
-import CarbonIcon from "../../components/common/CarbonIcon";
-import Add24 from "@carbon/icons/es/add/24";
-import Edit24 from "@carbon/icons/es/edit/24";
-import Trash24 from "@carbon/icons/es/trash-can/24";
+import { CustomCheckbox } from "../../components";
 import { Button } from "@carbon/react-native";
 import { useDashboard } from "./hooks/useDashboard";
 
@@ -58,7 +54,7 @@ interface Permissions {
 
 const DashboardScreen = ({ route, navigation }: any) => {
   const { user } = route.params;
-  
+
   const {
     roles,
     rolesTab,
@@ -161,13 +157,11 @@ const DashboardScreen = ({ route, navigation }: any) => {
         <View style={styles.itemActions}>
           <Button
             text="Edit"
-            size="small"
             onPress={() => openEditUserModal(item)}
             style={styles.actionButton}
           />
           <Button
             text="Delete"
-            size="small"
             kind="danger"
             onPress={() => deleteUser(item.id)}
             style={styles.actionButton}
@@ -195,7 +189,6 @@ const DashboardScreen = ({ route, navigation }: any) => {
             {perms.updateProperty && (
               <Button
                 text="Edit"
-                size="small"
                 onPress={() => openEditPropertyModal(item)}
                 style={[styles.actionButton, styles.editButton]}
               />
@@ -203,7 +196,6 @@ const DashboardScreen = ({ route, navigation }: any) => {
             {perms.deleteProperty && (
               <Button
                 text="Delete"
-                size="small"
                 kind="danger"
                 onPress={() => deleteProperty(item.id)}
                 style={[styles.actionButton, styles.deleteButton]}
@@ -226,7 +218,10 @@ const DashboardScreen = ({ route, navigation }: any) => {
             Welcome, {user.name} ({getRoleDisplayName(user.role)})
           </Text>
         </View>
-        <TouchableOpacity style={styles.logoutButton} onPress={() => handleLogout(navigation)}>
+        <TouchableOpacity
+          style={styles.logoutButton}
+          onPress={() => handleLogout(navigation)}
+        >
           <Text style={styles.logoutButtonText}>Logout</Text>
         </TouchableOpacity>
       </View>
@@ -275,7 +270,6 @@ const DashboardScreen = ({ route, navigation }: any) => {
                   <Text style={styles.sectionTitle}>User Management</Text>
                   <Button
                     text="+ Add User"
-                    size="small"
                     onPress={() => setShowAddUserOptions(true)}
                     style={styles.addButton}
                   />
@@ -304,7 +298,6 @@ const DashboardScreen = ({ route, navigation }: any) => {
                   <Text style={styles.sectionTitle}>Roles Management</Text>
                   <Button
                     text="+ Add Role"
-                    size="small"
                     onPress={() => {
                       setNewRoleName("");
                       setNewRoleId("");
@@ -328,16 +321,17 @@ const DashboardScreen = ({ route, navigation }: any) => {
                         <Text style={styles.itemMeta}>ID: {item.id}</Text>
                         <Text style={styles.itemMeta}>
                           Permissions:{" "}
-                          {item.permissions ? Object.entries(item.permissions)
-                            .map(([k, v]) => (v ? k : null))
-                            .filter(Boolean)
-                            .join(", ") || "None" : "None"}
+                          {item.permissions
+                            ? Object.entries(item.permissions)
+                                .map(([k, v]) => (v ? k : null))
+                                .filter(Boolean)
+                                .join(", ") || "None"
+                            : "None"}
                         </Text>
                       </View>
                       <View style={styles.itemActions}>
                         <Button
                           text="Edit"
-                          size="small"
                           onPress={() => {
                             setSelectedRole(item);
                             setNewRoleName(item.name);
@@ -350,7 +344,6 @@ const DashboardScreen = ({ route, navigation }: any) => {
                         {item.id !== "superadmin" && (
                           <Button
                             text="Delete"
-                            size="small"
                             kind="danger"
                             onPress={() => handleDeleteRole(item.id)}
                             style={styles.actionButton}
@@ -391,7 +384,6 @@ const DashboardScreen = ({ route, navigation }: any) => {
                 />
                 <Button
                   text="Add Property"
-                  size="small"
                   onPress={addProperty}
                   style={styles.submitButton}
                 />
@@ -514,7 +506,7 @@ const DashboardScreen = ({ route, navigation }: any) => {
                 {roles
                   .filter((r: Role) => r.id !== "superadmin")
                   .map((role: Role) => (
-                    <View key={role.id} style={styles.roleCheckboxContainer}>
+                    <View style={styles.roleCheckboxContainer}>
                       <CustomCheckbox
                         label={role.name}
                         checked={newUserRoles.includes(role.id)}
@@ -583,7 +575,7 @@ const DashboardScreen = ({ route, navigation }: any) => {
                 {roles
                   .filter((r: Role) => r.id !== "superadmin")
                   .map((role: Role) => (
-                    <View key={role.id} style={styles.roleCheckboxContainer}>
+                    <View style={styles.roleCheckboxContainer}>
                       <CustomCheckbox
                         label={role.name}
                         checked={newUserRoles.includes(role.id)}

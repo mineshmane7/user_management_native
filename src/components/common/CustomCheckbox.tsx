@@ -9,30 +9,30 @@ interface CustomCheckboxProps {
   style?: ViewStyle;
 }
 
-const CustomCheckbox = ({ 
-  label, 
-  checked, 
-  onPress, 
-  style 
+const CustomCheckbox = ({
+  label,
+  checked,
+  onPress,
+  style,
 }: CustomCheckboxProps) => {
   const handlePress = () => {
-    console.log('Checkbox pressed, current state:', checked);
+    console.log("Checkbox pressed, current state:", checked);
     onPress();
   };
 
   return (
-    <TouchableOpacity 
-      onPress={handlePress} 
+    <TouchableOpacity
+      onPress={handlePress}
       activeOpacity={0.7}
-      style={{ width: '100%' }}
+      style={{ width: "100%" }}
     >
       <View pointerEvents="none">
         <Checkbox
+          id={label}
           label={label}
           checked={checked}
-          value={checked}
           style={style}
-          testID="custom-checkbox"
+          onPress={() => {}}
         />
       </View>
     </TouchableOpacity>

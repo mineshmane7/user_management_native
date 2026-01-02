@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, KeyboardTypeOptions } from "react-native";
-import { TextInput } from "@carbon/react-native";
+import { PasswordInput, TextInput } from "@carbon/react-native";
 
-interface CustomInputProps {
+interface CustomPasswordInput {
   label?: string;
   value: string;
   onChangeText: (text: string) => void;
@@ -14,16 +14,16 @@ interface CustomInputProps {
   numberOfLines?: number;
 }
 
-const CustomInput = ({
+const CustomPasswordInput = ({
   label,
   value,
   onChangeText,
   placeholder,
   secureTextEntry = false,
   autoCapitalize = "sentences",
-}: CustomInputProps) => {
+}: CustomPasswordInput) => {
   return (
-    <TextInput
+    <PasswordInput
       label={label}
       value={value}
       onChangeText={onChangeText}
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomInput;
+export default CustomPasswordInput;

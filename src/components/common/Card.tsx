@@ -1,19 +1,19 @@
 import React from "react";
 import { StyleSheet, Text, StyleProp, ViewStyle } from "react-native";
-import { Card as CarbonCard } from "@carbon/react-native";
+import { Tile } from "@carbon/react-native";
 
 interface CardProps {
-  children: any;
+  children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   title?: string;
 }
 
 const Card = ({ children, style, title }: CardProps) => {
   return (
-    <CarbonCard style={style} testID="carbon-card">
+    <Tile style={style}>
       {title ? <Text style={styles.title}>{title}</Text> : null}
       {children}
-    </CarbonCard>
+    </Tile>
   );
 };
 

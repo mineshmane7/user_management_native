@@ -2,13 +2,15 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { CustomInput, CustomButton, ScreenContainer } from "../../components";
 import { useAuth } from "./hooks/useAuth";
+import CustomPasswordInput from "../../components/common/PasswordInput";
 
 interface LoginScreenProps {
   navigation: any;
 }
 
 const LoginScreen = ({ navigation }: LoginScreenProps) => {
-  const { email, setEmail, password, setPassword, loading, handleLogin } = useAuth();
+  const { email, setEmail, password, setPassword, loading, handleLogin } =
+    useAuth();
 
   return (
     <ScreenContainer>
@@ -24,7 +26,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
           autoCapitalize="none"
         />
 
-        <CustomInput
+        <CustomPasswordInput
           label="Password"
           placeholder="Enter your password"
           value={password}
